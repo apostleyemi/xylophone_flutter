@@ -5,11 +5,24 @@ import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
-  void playSound(int n) {
-    AudioCache player = AudioCache();
-    player = AudioCache();
-    // call this method when desired
-    player.play('audio/note$n.wav');
+  Expanded buildKey(
+      {required Color color,
+      required int soundNumber,
+      required String textValue}) {
+    return Expanded(
+      child: OutlinedButton(
+        onPressed: () {
+          AudioCache player = AudioCache();
+          player = AudioCache();
+          // call this method when desired
+          player.play('audio/note$soundNumber.wav');
+        },
+        child: Text(textValue),
+        style: OutlinedButton.styleFrom(
+          backgroundColor: color,
+        ),
+      ),
+    );
   }
 
   @override
@@ -21,91 +34,14 @@ class XylophoneApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
-                    // add it to your class as a static member
-
-                    // or as a local variable
-                    playSound(1);
-                  },
-                  child: Text('A'),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
-                    // add it to your class as a static member
-
-                    playSound(2);
-                  },
-                  child: Text('B'),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.deepOrange,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
-                    playSound(3);
-                  },
-                  child: Text('C'),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.yellow,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
-                    // or as a local variable
-                    playSound(4);
-                  },
-                  child: Text('D'),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.greenAccent,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
-                    // add it to your class as a static member
-                    playSound(5);
-                  },
-                  child: Text('E'),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
-                    // add it to your class as a static member
-                    playSound(6);
-                  },
-                  child: Text('F'),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
-                    playSound(7);
-                  },
-                  child: Text('G'),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
-                  ),
-                ),
-              ),
+              buildKey(color: Colors.red, soundNumber: 1, textValue: 'A'),
+              buildKey(color: Colors.orange, soundNumber: 2, textValue: 'B'),
+              buildKey(color: Colors.yellow, soundNumber: 3, textValue: 'C'),
+              buildKey(
+                  color: Colors.greenAccent, soundNumber: 4, textValue: 'D'),
+              buildKey(color: Colors.green, soundNumber: 5, textValue: 'E'),
+              buildKey(color: Colors.blue, soundNumber: 6, textValue: 'F'),
+              buildKey(color: Colors.purple, soundNumber: 7, textValue: 'G'),
             ],
           ),
         ),
